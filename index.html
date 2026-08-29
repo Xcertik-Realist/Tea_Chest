@@ -1,145 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="base:app_id" content="6a1d7e5768e7f787fedc0677" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tea Chest | Decentralized Encrypted Storage</title>
+    <title>Base Drive | Decentralized Encrypted Storage on Base</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            300: '#86efac',
-                            400: '#4ade80',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
-                        dark: {
-                            900: '#0a0a0a',
-                            800: '#1a1a1a',
-                            700: '#2a2a2a',
-                            600: '#3a3a3a',
+                        base: {
+                            blue: '#0000FF',
+                            black: '#0A0B0D',
+                            white: '#FFFFFF',
+                            gray10: '#EEF0F3',
+                            gray15: '#DEE1E7',
+                            gray30: '#B1B7C3',
+                            gray50: '#717886',
+                            gray60: '#5B616E',
+                            gray80: '#32353D',
+                            gray100: '#0A0B0D',
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        .gradient-text {
-            background: linear-gradient(90deg, #22c55e, #86efac);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
         
-        .gradient-bg {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 163, 74, 0.2) 100%);
-        }
-
-        /* Glassmorphism styles */
-        .glass {
-            background: rgba(26, 26, 26, 0.25);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        .base-blue-text {
+            color: #0000FF;
         }
         
-        .glass-nav {
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        .base-square {
+            width: 28px;
+            height: 28px;
+            background: #0000FF;
+            border-radius: 5%;
+            flex-shrink: 0;
         }
-
-        .glass-light {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .glass-feature {
-            background: rgba(34, 197, 94, 0.05);
-            backdrop-filter: blur(16px) saturate(180%);
-            -webkit-backdrop-filter: blur(16px) saturate(180%);
-            border: 1px solid rgba(34, 197, 94, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        
+        .base-square-sm {
+            width: 20px;
+            height: 20px;
+            background: #0000FF;
+            border-radius: 5%;
+            flex-shrink: 0;
         }
         
         .file-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-3px);
+            border-color: #0000FF;
         }
         
         .nav-link:hover {
-            background: rgba(34, 197, 94, 0.1);
+            color: #FFFFFF;
         }
         
-        .feature-icon {
-            transition: all 0.3s ease;
+        .feature-card:hover {
+            border-color: rgba(0, 0, 255, 0.4);
         }
         
         .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            color: #22c55e;
+            color: #0000FF;
         }
         
-        /* Animation for the hero section */
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
         
         .floating {
             animation: float 6s ease-in-out infinite;
         }
+        
+        /* Clean borders matching Base restraint */
+        .base-border {
+            border: 1px solid #32353D;
+        }
     </style>
 </head>
-<body class="bg-dark-900 text-gray-100 font-sans">
+<body class="bg-base-black text-gray-100 font-sans antialiased">
     <!-- Navigation -->
-    <nav class="glass-nav fixed w-full z-50">
+    <nav class="fixed w-full z-50 bg-base-black/90 backdrop-blur-md border-b border-base-gray80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <i class="fas fa-leaf text-primary-500 text-2xl mr-2"></i>
-                        <span class="text-xl font-bold text-white">Tea Chest</span>
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <div class="base-square"></div>
+                        <span class="text-xl font-bold text-white tracking-tight">Base Drive</span>
                     </div>
                     <div class="hidden md:block">
-                        <div class="ml-10 flex items-baseline space-x-4">
-                            <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Features</a>
-                            <a href="#how-it-works" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">How it works</a>
-                            <a href="#pricing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Pricing</a>
-                            <a href="#faq" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">FAQ</a>
+                        <div class="ml-10 flex items-baseline space-x-1">
+                            <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Features</a>
+                            <a href="#how-it-works" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">How it works</a>
+                            <a href="#pricing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Pricing</a>
+                            <a href="#token" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Token</a>
+                            <a href="#faq" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">FAQ</a>
                         </div>
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
-                        <a href="#" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 transition duration-150">
+                    <div class="ml-4 flex items-center md:ml-6 gap-3">
+                        <a href="#" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-base-blue hover:bg-blue-700 transition duration-150">
                             Get Early Access
                         </a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-dark-700 focus:outline-none">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-base-gray30 hover:text-white hover:bg-base-gray80 focus:outline-none">
                         <span class="sr-only">Open main menu</span>
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
@@ -148,16 +131,17 @@
         </div>
         
         <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden">
+        <div class="mobile-menu hidden md:hidden bg-base-black border-b border-base-gray80">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">Features</a>
-                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">How it works</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">Pricing</a>
-                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-dark-700">FAQ</a>
+                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Features</a>
+                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">How it works</a>
+                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Pricing</a>
+                <a href="#token" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Token</a>
+                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">FAQ</a>
             </div>
-            <div class="pt-4 pb-3 border-t border-dark-700">
+            <div class="pt-4 pb-3 border-t border-base-gray80">
                 <div class="px-5">
-                    <a href="#" class="block w-full px-4 py-2 rounded-md text-center text-sm font-medium text-white bg-primary-600 hover:bg-primary-700 transition duration-150">
+                    <a href="#" class="block w-full px-4 py-2 rounded-md text-center text-sm font-medium text-white bg-base-blue hover:bg-blue-700 transition">
                         Get Early Access
                     </a>
                 </div>
@@ -166,35 +150,39 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="relative overflow-hidden pt-24 pb-20 bg-gradient-to-br from-dark-900 to-dark-800">
+    <div class="relative overflow-hidden pt-28 pb-20 bg-base-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-base-gray80 text-xs font-medium text-base-gray30 mb-6">
+                        <div class="base-square-sm"></div>
+                        Built on Base · ERC-20
+                    </div>
                     <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
                         <span class="block">Your files,</span>
-                        <span class="block gradient-text">truly private</span>
+                        <span class="block text-base-blue">onchain & private</span>
                     </h1>
-                    <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                        Tea Chest is a decentralized storage solution built on the Tea Protocol. End-to-end encrypted, distributed on IPFS, with real-time collaboration.
+                    <p class="mt-5 text-base text-base-gray30 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        Base Drive is decentralized encrypted storage on Base. End-to-end encrypted, distributed on IPFS, powered by the BDRIVE ERC-20 token, with real-time collaboration.
                     </p>
                     <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <a href="#" class="px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-8 transition duration-150">
+                            <a href="#" class="px-6 py-3 text-base font-medium rounded-md text-white bg-base-blue hover:bg-blue-700 md:py-4 md:text-lg md:px-8 transition">
                                 Start free trial
                             </a>
-                            <a href="#" class="px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-500 bg-dark-800 hover:bg-dark-700 md:py-4 md:text-lg md:px-8 transition duration-150">
+                            <a href="#how-it-works" class="px-6 py-3 text-base font-medium rounded-md text-white border border-base-gray80 hover:border-base-gray30 md:py-4 md:text-lg md:px-8 transition">
                                 Learn more
                             </a>
                         </div>
-                        <p class="mt-3 text-xs text-gray-400">
-                            No credit card required. 14-day free trial.
+                        <p class="mt-3 text-xs text-base-gray50">
+                            No credit card required. 14-day free trial. Pay with BDRIVE, ETH, or USDC on Base.
                         </p>
                     </div>
                 </div>
                 <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                        <div class="relative block w-full bg-dark-800 border border-dark-700 rounded-lg overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-primary-300"></div>
+                    <div class="relative mx-auto w-full rounded-lg lg:max-w-md">
+                        <div class="relative block w-full bg-base-gray100 border border-base-gray80 rounded-lg overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-base-blue"></div>
                             <div class="p-4">
                                 <div class="flex items-center justify-between mb-4">
                                     <div class="flex items-center space-x-2">
@@ -202,73 +190,73 @@
                                         <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                                         <div class="w-3 h-3 rounded-full bg-green-500"></div>
                                     </div>
-                                    <div class="text-xs text-gray-400">Tea Chest • v1.0.0</div>
+                                    <div class="text-xs text-base-gray50">Base Drive · v1.0</div>
                                 </div>
-                                <div class="border border-dark-700 rounded-lg overflow-hidden">
-                                    <div class="bg-dark-900 p-3 border-b border-dark-700 flex items-center justify-between">
+                                <div class="border border-base-gray80 rounded-lg overflow-hidden">
+                                    <div class="bg-base-black p-3 border-b border-base-gray80 flex items-center justify-between">
                                         <div class="flex items-center space-x-2">
-                                            <i class="fas fa-folder text-primary-500"></i>
+                                            <i class="fas fa-folder text-base-blue"></i>
                                             <span class="text-sm font-medium">My Documents</span>
                                         </div>
                                         <div class="flex items-center space-x-2">
-                                            <i class="fas fa-search text-gray-400 text-xs"></i>
-                                            <i class="fas fa-ellipsis-h text-gray-400 text-xs"></i>
+                                            <i class="fas fa-search text-base-gray50 text-xs"></i>
+                                            <i class="fas fa-ellipsis-h text-base-gray50 text-xs"></i>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-3 p-3">
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-alt text-primary-500"></i>
+                                                <i class="fas fa-file-alt text-base-blue"></i>
                                                 <span class="text-xs truncate">Project Proposal</span>
                                             </div>
-                                            <div class="text-xs text-gray-400 flex items-center space-x-1">
+                                            <div class="text-xs text-base-gray50 flex items-center space-x-1">
                                                 <i class="fas fa-user-friends text-xs"></i>
                                                 <span>3 collaborators</span>
                                             </div>
                                         </div>
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-image text-primary-500"></i>
+                                                <i class="fas fa-file-image text-base-blue"></i>
                                                 <span class="text-xs truncate">Team Photo</span>
                                             </div>
-                                            <div class="text-xs text-gray-400">Encrypted</div>
+                                            <div class="text-xs text-base-gray50">Encrypted</div>
                                         </div>
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-pdf text-primary-500"></i>
+                                                <i class="fas fa-file-pdf text-base-blue"></i>
                                                 <span class="text-xs truncate">Financial Report</span>
                                             </div>
-                                            <div class="text-xs text-gray-400">Encrypted</div>
+                                            <div class="text-xs text-base-gray50">Encrypted</div>
                                         </div>
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-code text-primary-500"></i>
+                                                <i class="fas fa-file-code text-base-blue"></i>
                                                 <span class="text-xs truncate">Website Code</span>
                                             </div>
-                                            <div class="text-xs text-gray-400 flex items-center space-x-1">
+                                            <div class="text-xs text-base-gray50 flex items-center space-x-1">
                                                 <i class="fas fa-user-friends text-xs"></i>
                                                 <span>5 collaborators</span>
                                             </div>
                                         </div>
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-audio text-primary-500"></i>
+                                                <i class="fas fa-file-audio text-base-blue"></i>
                                                 <span class="text-xs truncate">Podcast Episode</span>
                                             </div>
-                                            <div class="text-xs text-gray-400">Encrypted</div>
+                                            <div class="text-xs text-base-gray50">Encrypted</div>
                                         </div>
-                                        <div class="file-card bg-dark-800 border border-dark-700 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-video text-primary-500"></i>
+                                                <i class="fas fa-file-video text-base-blue"></i>
                                                 <span class="text-xs truncate">Product Demo</span>
                                             </div>
-                                            <div class="text-xs text-gray-400">Encrypted</div>
+                                            <div class="text-xs text-base-gray50">Encrypted</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-primary-500/10 -z-10 floating"></div>
+                        <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-md bg-base-blue/10 -z-10 floating"></div>
                     </div>
                 </div>
             </div>
@@ -276,83 +264,77 @@
     </div>
 
     <!-- Features Section -->
-    <div id="features" class="py-16 bg-dark-800 overflow-hidden">
+    <div id="features" class="py-20 bg-base-gray100 border-t border-base-gray80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-primary-500 font-semibold tracking-wide uppercase">Features</h2>
+                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Features</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    A better way to store your files
+                    Storage built for Base
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Secure, decentralized, and collaborative file storage powered by blockchain technology.
+                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
+                    Secure, decentralized, and collaborative file storage powered by Base and IPFS.
                 </p>
             </div>
 
-            <div class="mt-20">
-                <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-                    <!-- Feature 1 -->
-                    <div class="feature-card glass-feature relative p-6 rounded-lg transition duration-150 hover:border-primary-500/30 hover:bg-primary-500/10">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-lock text-white text-xl"></i>
+            <div class="mt-16">
+                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-lock text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">End-to-End Encryption</h3>
-                        <p class="mt-2 text-base text-gray-400">
+                        <h3 class="text-lg font-semibold text-white">End-to-End Encryption</h3>
+                        <p class="mt-2 text-base text-base-gray30">
                             All files are encrypted before leaving your device. Only you and those you share with can access the contents.
                         </p>
                     </div>
                     
-                    <!-- Feature 2 -->
-                    <div class="feature-card relative bg-dark-900 p-6 rounded-lg border border-dark-700 transition duration-150 hover:border-primary-500/30">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-network-wired text-white text-xl"></i>
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-network-wired text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">Decentralized Storage</h3>
-                        <p class="mt-2 text-base text-gray-400">
+                        <h3 class="text-lg font-semibold text-white">Decentralized Storage</h3>
+                        <p class="mt-2 text-base text-base-gray30">
                             Files are distributed across the IPFS network, ensuring redundancy and eliminating single points of failure.
                         </p>
                     </div>
                     
-                    <!-- Feature 3 -->
-                    <div class="feature-card relative bg-dark-900 p-6 rounded-lg border border-dark-700 transition duration-150 hover:border-primary-500/30">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-users text-white text-xl"></i>
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-users text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">Real-time Collaboration</h3>
-                        <p class="mt-2 text-base text-gray-400">
+                        <h3 class="text-lg font-semibold text-white">Real-time Collaboration</h3>
+                        <p class="mt-2 text-base text-base-gray30">
                             Multiple people can edit documents simultaneously with end-to-end encrypted collaboration.
                         </p>
                     </div>
                     
-                    <!-- Feature 4 -->
-                    <div class="feature-card relative bg-dark-900 p-6 rounded-lg border border-dark-700 transition duration-150 hover:border-primary-500/30">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-history text-white text-xl"></i>
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-history text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">Version History</h3>
-                        <p class="mt-2 text-base text-gray-400">
+                        <h3 class="text-lg font-semibold text-white">Version History</h3>
+                        <p class="mt-2 text-base text-base-gray30">
                             Every change is tracked and stored. Revert to any previous version of your files at any time.
                         </p>
                     </div>
                     
-                    <!-- Feature 5 -->
-                    <div class="feature-card relative bg-dark-900 p-6 rounded-lg border border-dark-700 transition duration-150 hover:border-primary-500/30">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-shield-alt text-white text-xl"></i>
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-shield-alt text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">Zero-Knowledge Proof</h3>
-                        <p class="mt-2 text-base text-gray-400">
+                        <h3 class="text-lg font-semibold text-white">Zero-Knowledge</h3>
+                        <p class="mt-2 text-base text-base-gray30">
                             We never have access to your files or encryption keys. Your privacy is mathematically guaranteed.
                         </p>
                     </div>
                     
-                    <!-- Feature 6 -->
-                    <div class="feature-card relative bg-dark-900 p-6 rounded-lg border border-dark-700 transition duration-150 hover:border-primary-500/30">
-                        <div class="absolute -top-6 left-6 w-12 h-12 rounded-full gradient-bg flex items-center justify-center">
-                            <i class="feature-icon fas fa-bolt text-white text-xl"></i>
+                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
+                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
+                            <i class="feature-icon fas fa-cube text-white text-lg"></i>
                         </div>
-                        <h3 class="mt-8 text-lg font-medium text-white">Tea Protocol Integration</h3>
-                        <p class="mt-2 text-base text-gray-400">
-                            Built on the Tea Protocol for decentralized computation, ensuring fast access and reliable storage.
+                        <h3 class="text-lg font-semibold text-white">Native to Base</h3>
+                        <p class="mt-2 text-base text-base-gray30">
+                            Built on Base for low-cost transactions, fast finality, and seamless ERC-20 payments with BDRIVE.
                         </p>
                     </div>
                 </div>
@@ -360,316 +342,302 @@
         </div>
     </div>
 
-    <!-- How it works section -->
-    <div id="how-it-works" class="py-16 bg-dark-900 overflow-hidden">
+    <!-- How it works -->
+    <div id="how-it-works" class="py-20 bg-base-black border-t border-base-gray80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-primary-500 font-semibold tracking-wide uppercase">Technology</h2>
+                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Technology</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    How Tea Chest works
+                    How Base Drive works
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    A technical breakdown of our decentralized storage solution
+                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
+                    A technical breakdown of our decentralized storage solution on Base
                 </p>
             </div>
             
-            <div class="mt-20">
-                <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+            <div class="mt-16">
+                <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                     <div class="relative lg:row-start-1 lg:col-start-2">
-                        <div class="relative text-base mx-auto max-w-prose lg:max-w-none">
-                            <figure>
-                                <div class="aspect-w-12 aspect-h-7 lg:aspect-none">
-                                    <div class="gradient-bg rounded-xl p-8">
-                                        <div class="flex flex-col space-y-6">
-                                            <div class="flex items-start space-x-4">
-                                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-500 flex items-center justify-center">
-                                                    <i class="fas fa-lock text-white"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h4 class="text-white font-medium">Client-Side Encryption</h4>
-                                                    <p class="mt-1 text-gray-300 text-sm">
-                                                        Files are encrypted on your device before being uploaded using AES-256 encryption.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-start space-x-4">
-                                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-500 flex items-center justify-center">
-                                                    <i class="fas fa-project-diagram text-white"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h4 class="text-white font-medium">IPFS Storage</h4>
-                                                    <p class="mt-1 text-gray-300 text-sm">
-                                                        Encrypted chunks are distributed across the InterPlanetary File System network.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-start space-x-4">
-                                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-500 flex items-center justify-center">
-                                                    <i class="fas fa-link text-white"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h4 class="text-white font-medium">Tea Protocol</h4>
-                                                    <p class="mt-1 text-gray-300 text-sm">
-                                                        Content addresses and encryption metadata are stored on the Tea Protocol blockchain.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-start space-x-4">
-                                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-500 flex items-center justify-center">
-                                                    <i class="fas fa-sync-alt text-white"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h4 class="text-white font-medium">Collaboration</h4>
-                                                    <p class="mt-1 text-gray-300 text-sm">
-                                                        End-to-end encrypted real-time collaboration using WebRTC and CRDTs.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                        <div class="bg-base-gray100 border border-base-gray80 rounded-lg p-8">
+                            <div class="flex flex-col space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
+                                        <i class="fas fa-lock text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-white font-medium">Client-Side Encryption</h4>
+                                        <p class="mt-1 text-base-gray30 text-sm">
+                                            Files are encrypted on your device before upload using AES-256.
+                                        </p>
                                     </div>
                                 </div>
-                            </figure>
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
+                                        <i class="fas fa-project-diagram text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-white font-medium">IPFS Storage</h4>
+                                        <p class="mt-1 text-base-gray30 text-sm">
+                                            Encrypted chunks are distributed across the InterPlanetary File System.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
+                                        <i class="fas fa-link text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-white font-medium">Base Settlement</h4>
+                                        <p class="mt-1 text-base-gray30 text-sm">
+                                            Content addresses, access control, and payments settle on Base via ERC-20.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-4">
+                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
+                                        <i class="fas fa-sync-alt text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="text-white font-medium">Collaboration</h4>
+                                        <p class="mt-1 text-base-gray30 text-sm">
+                                            End-to-end encrypted real-time collaboration using WebRTC and CRDTs.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="mt-8 lg:mt-0 lg:row-start-1 lg:col-start-1">
-                        <div class="prose prose-invert max-w-prose mx-auto lg:max-w-none">
-                            <h3 class="text-white">Decentralized by design</h3>
-                            <p class="text-gray-300">
-                                Tea Chest leverages cutting-edge decentralized technologies to provide a storage solution that's secure, private, and resilient.
+                    <div class="mt-10 lg:mt-0 lg:row-start-1 lg:col-start-1">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Decentralized by design</h3>
+                            <p class="mt-4 text-base-gray30">
+                                Base Drive combines IPFS for content addressing with Base for low-cost settlement, access control, and the BDRIVE ERC-20 utility token.
                             </p>
-                            <ul class="mt-6 space-y-4 text-gray-300">
+                            <ul class="mt-8 space-y-4 text-base-gray30">
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-primary-500 text-white">
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
                                     </div>
                                     <p class="ml-3">
-                                        <strong>No single point of failure</strong> - Files are distributed across hundreds of nodes in the IPFS network
+                                        <strong class="text-white">No single point of failure</strong> — files distributed across IPFS nodes
                                     </p>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-primary-500 text-white">
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
                                     </div>
                                     <p class="ml-3">
-                                        <strong>Mathematically private</strong> - Zero-knowledge architecture means we never see your files or keys
+                                        <strong class="text-white">Mathematically private</strong> — zero-knowledge architecture
                                     </p>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-primary-500 text-white">
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
                                     </div>
                                     <p class="ml-3">
-                                        <strong>Pay with crypto</strong> - Use TEA tokens or other supported cryptocurrencies to pay for storage
+                                        <strong class="text-white">Pay on Base</strong> — BDRIVE ERC-20, ETH, or USDC
                                     </p>
                                 </li>
                                 <li class="flex items-start">
                                     <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-full bg-primary-500 text-white">
-                                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
+                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
                                     </div>
                                     <p class="ml-3">
-                                        <strong>Open source</strong> - All client code is open source and auditable
+                                        <strong class="text-white">Open source</strong> — client code is auditable
                                     </p>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Section -->
+    <div id="token" class="py-20 bg-base-gray100 border-t border-base-gray80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">BDRIVE Token</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    The Base Drive ERC-20
+                </p>
+                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
+                    BDRIVE is the native utility token on Base used for storage payments, pinning incentives, and protocol governance.
+                </p>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
+                    <h3 class="text-white font-semibold">Utility</h3>
+                    <p class="mt-2 text-sm text-base-gray30">Pay for storage, bandwidth, and long-term pinning with BDRIVE. Holders receive preferential rates.</p>
+                </div>
+                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
+                    <h3 class="text-white font-semibold">Incentives</h3>
+                    <p class="mt-2 text-sm text-base-gray30">Nodes that pin content earn BDRIVE. Storage demand directly drives token utility on Base.</p>
+                </div>
+                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
+                    <h3 class="text-white font-semibold">Network</h3>
+                    <p class="mt-2 text-sm text-base-gray30">Deployed as a standard ERC-20 on Base. Low fees, fast confirmation, fully onchain.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Pricing Section -->
-    <div id="pricing" class="py-16 bg-dark-800 overflow-hidden">
+    <div id="pricing" class="py-20 bg-base-black border-t border-base-gray80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
-                <h2 class="text-base text-primary-500 font-semibold tracking-wide uppercase">Pricing</h2>
+                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Pricing</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
                     Simple, transparent pricing
                 </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Pay only for what you use. No hidden fees, no surprises.
+                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
+                    Pay only for what you use. Discount when paying with BDRIVE.
                 </p>
             </div>
             
             <div class="mt-16">
                 <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    <!-- Free Tier -->
-                    <div class="glass rounded-lg shadow-sm divide-y divide-dark-700/50">
+                    <!-- Free -->
+                    <div class="bg-base-gray100 border border-base-gray80 rounded-lg divide-y divide-base-gray80">
                         <div class="p-6">
-                            <h2 class="text-lg leading-6 font-medium text-white">Free</h2>
+                            <h2 class="text-lg font-medium text-white">Free</h2>
                             <p class="mt-4">
                                 <span class="text-4xl font-extrabold text-white">$0</span>
-                                <span class="text-base font-medium text-gray-400">/month</span>
+                                <span class="text-base font-medium text-base-gray50">/month</span>
                             </p>
-                            <p class="mt-4 text-sm text-gray-300">
-                                Perfect for trying out Tea Chest with basic needs
-                            </p>
-                            <a href="#" class="mt-8 block w-full bg-dark-800 border border-dark-700 rounded-md py-2 text-sm font-semibold text-white text-center hover:border-primary-500 transition duration-150">
+                            <p class="mt-4 text-sm text-base-gray30">Perfect for trying Base Drive</p>
+                            <a href="#" class="mt-8 block w-full border border-base-gray80 rounded-md py-2.5 text-sm font-semibold text-white text-center hover:border-base-blue transition">
                                 Get started
                             </a>
                         </div>
                         <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-gray-400 tracking-wide uppercase">What's included</h3>
+                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
                             <ul class="mt-6 space-y-4">
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">5GB encrypted storage</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">5GB encrypted storage</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Basic collaboration</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Basic collaboration</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">30-day version history</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">30-day version history</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Community support</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Community support</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     
-                    <!-- Pro Tier -->
-                    <div class="glass border-2 border-primary-500 rounded-lg shadow-sm divide-y divide-dark-700 transform scale-105 z-10">
+                    <!-- Pro -->
+                    <div class="bg-base-gray100 border-2 border-base-blue rounded-lg divide-y divide-base-gray80 relative transform lg:scale-105 z-10">
                         <div class="p-6">
                             <div class="flex justify-between items-start">
-                                <h2 class="text-lg leading-6 font-medium text-white">Pro</h2>
-                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary-500 text-white">
+                                <h2 class="text-lg font-medium text-white">Pro</h2>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-base-blue text-white">
                                     Most popular
                                 </span>
                             </div>
                             <p class="mt-4">
                                 <span class="text-4xl font-extrabold text-white">$9</span>
-                                <span class="text-base font-medium text-gray-400">/month</span>
+                                <span class="text-base font-medium text-base-gray50">/month</span>
                             </p>
-                            <p class="mt-4 text-sm text-gray-300">
-                                For professionals and teams who need more
-                            </p>
-                            <a href="#" class="mt-8 block w-full bg-primary-600 border border-transparent rounded-md py-2 text-sm font-semibold text-white text-center hover:bg-primary-700 transition duration-150">
+                            <p class="mt-4 text-sm text-base-gray30">For professionals and teams</p>
+                            <a href="#" class="mt-8 block w-full bg-base-blue rounded-md py-2.5 text-sm font-semibold text-white text-center hover:bg-blue-700 transition">
                                 Get started
                             </a>
                         </div>
                         <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-gray-400 tracking-wide uppercase">What's included</h3>
+                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
                             <ul class="mt-6 space-y-4">
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">100GB encrypted storage</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">100GB encrypted storage</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Advanced collaboration</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Advanced collaboration</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">1-year version history</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">1-year version history</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Priority support</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Priority support</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Custom domains</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Team management</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Team management</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">BDRIVE discount</span>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     
-                    <!-- Enterprise Tier -->
-                    <div class="glass rounded-lg shadow-sm divide-y divide-dark-700">
+                    <!-- Enterprise -->
+                    <div class="bg-base-gray100 border border-base-gray80 rounded-lg divide-y divide-base-gray80">
                         <div class="p-6">
-                            <h2 class="text-lg leading-6 font-medium text-white">Enterprise</h2>
+                            <h2 class="text-lg font-medium text-white">Enterprise</h2>
                             <p class="mt-4">
                                 <span class="text-4xl font-extrabold text-white">Custom</span>
                             </p>
-                            <p class="mt-4 text-sm text-gray-300">
-                                For organizations with advanced security and compliance needs
-                            </p>
-                            <a href="#" class="mt-8 block w-full bg-dark-800 border border-dark-700 rounded-md py-2 text-sm font-semibold text-white text-center hover:border-primary-500 transition duration-150">
+                            <p class="mt-4 text-sm text-base-gray30">Advanced security & compliance</p>
+                            <a href="#" class="mt-8 block w-full border border-base-gray80 rounded-md py-2.5 text-sm font-semibold text-white text-center hover:border-base-blue transition">
                                 Contact sales
                             </a>
                         </div>
                         <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-gray-400 tracking-wide uppercase">What's included</h3>
+                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
                             <ul class="mt-6 space-y-4">
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Unlimited storage</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Unlimited storage</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Advanced security controls</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Advanced security controls</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Unlimited version history</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Unlimited version history</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">24/7 dedicated support</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">24/7 dedicated support</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">SAML SSO</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">SAML SSO</span>
                                 </li>
                                 <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <span class="text-sm text-gray-300">Custom contracts</span>
+                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                    <span class="text-sm text-base-gray30">Custom contracts</span>
                                 </li>
                             </ul>
                         </div>
@@ -677,399 +645,188 @@
                 </div>
             </div>
             
-            <div class="mt-12 p-6 bg-dark-900 border border-dark-700 rounded-lg">
-                <h3 class="text-lg font-medium text-white text-center">Pay with cryptocurrency</h3>
-                <p class="mt-2 text-gray-300 text-center">
-                    All plans can be paid with TEA tokens or other supported cryptocurrencies at a 10% discount
+            <div class="mt-12 p-6 bg-base-gray100 border border-base-gray80 rounded-lg">
+                <h3 class="text-lg font-medium text-white text-center">Pay on Base</h3>
+                <p class="mt-2 text-base-gray30 text-center text-sm">
+                    All plans can be paid with BDRIVE (10% discount), ETH, or USDC on Base
                 </p>
-                <div class="mt-6 flex flex-wrap justify-center gap-4">
-                    <div class="flex items-center bg-dark-800 px-3 py-2 rounded-lg">
-                        <img src="https://cryptologos.cc/logos/tea-tea-logo.png" alt="TEA" class="h-6 w-6 rounded-full">
-                        <span class="ml-2 text-sm font-medium text-white">TEA</span>
+                <div class="mt-6 flex flex-wrap justify-center gap-3">
+                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
+                        <div class="base-square-sm mr-2"></div>
+                        <span class="text-sm font-medium text-white">BDRIVE</span>
                     </div>
-                    <div class="flex items-center bg-dark-800 px-3 py-2 rounded-lg">
-                        <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png" alt="Ethereum" class="h-6 w-6 rounded-full">
-                        <span class="ml-2 text-sm font-medium text-white">ETH</span>
+                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
+                        <span class="text-sm font-medium text-white">ETH</span>
                     </div>
-                    <div class="flex items-center bg-dark-800 px-3 py-2 rounded-lg">
-                        <img src="https://cryptologos.cc/logos/usd-coin-usdc-logo.png" alt="USDC" class="h-6 w-6 rounded-full">
-                        <span class="ml-2 text-sm font-medium text-white">USDC</span>
-                    </div>
-                    <div class="flex items-center bg-dark-800 px-3 py-2 rounded-lg">
-                        <img src="https://cryptologos.cc/logos/filecoin-fil-logo.png" alt="Filecoin" class="h-6 w-6 rounded-full">
-                        <span class="ml-2 text-sm font-medium text-white">FIL</span>
+                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
+                        <span class="text-sm font-medium text-white">USDC</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- FAQ Section -->
-    <div id="faq" class="py-16 bg-dark-900/30 overflow-hidden backdrop-blur-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-base text-primary-500 font-semibold tracking-wide uppercase">FAQ</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+    <!-- FAQ -->
+    <div id="faq" class="py-20 bg-base-gray100 border-t border-base-gray80">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">FAQ</h2>
+                <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
                     Frequently asked questions
-                </p>
-                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto">
-                    Everything you need to know about Tea Chest
                 </p>
             </div>
             
-            <div class="mt-20">
-                <div class="space-y-6 divide-y divide-dark-700">
-                    <!-- Question 1 -->
-                    <div x-data="{ open: false }" class="pt-6">
-                        <div class="flex items-start justify-between">
-                            <dt class="text-lg font-medium text-white">
-                                <button @click="open = !open" class="text-left w-full flex items-start justify-between" aria-controls="faq-1" aria-expanded="false">
-                                    <span>How is Tea Chest different from Google Drive or Dropbox?</span>
-                                </button>
-                            </dt>
-                            <dd class="ml-6 flex-shrink-0">
-                                <button @click="open = !open" class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                            </dd>
-                        </div>
-                        <dd x-show="open" x-collapse id="faq-1" class="mt-2 pr-12">
-                            <p class="text-base text-gray-400">
-                                Unlike centralized services like Google Drive or Dropbox, Tea Chest is built on decentralized technologies. Your files are encrypted before leaving your device and stored across the IPFS network, not on our servers. This means no single entity controls your data, and we can't access your files even if we wanted to.
-                            </p>
-                        </dd>
-                    </div>
-                    
-                    <!-- Question 2 -->
-                    <div x-data="{ open: false }" class="pt-6">
-                        <div class="flex items-start justify-between">
-                            <dt class="text-lg font-medium text-white">
-                                <button @click="open = !open" class="text-left w-full flex items-start justify-between" aria-controls="faq-2" aria-expanded="false">
-                                    <span>What happens if I lose my encryption key?</span>
-                                </button>
-                            </dt>
-                            <dd class="ml-6 flex-shrink-0">
-                                <button @click="open = !open" class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                            </dd>
-                        </div>
-                        <dd x-show="open" x-collapse id="faq-2" class="mt-2 pr-12">
-                            <p class="text-base text-gray-400">
-                                Your encryption key is generated and stored only on your devices. If you lose all copies of your key, there is no way to recover your encrypted files. This is by design to ensure complete privacy. We strongly recommend backing up your key in a secure location. Tea Chest provides tools to safely export and backup your key.
-                            </p>
-                        </dd>
-                    </div>
-                    
-                    <!-- Question 3 -->
-                    <div x-data="{ open: false }" class="pt-6">
-                        <div class="flex items-start justify-between">
-                            <dt class="text-lg font-medium text-white">
-                                <button @click="open = !open" class="text-left w-full flex items-start justify-between" aria-controls="faq-3" aria-expanded="false">
-                                    <span>How does real-time collaboration work with encryption?</span>
-                                </button>
-                            </dt>
-                            <dd class="ml-6 flex-shrink-0">
-                                <button @click="open = !open" class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                            </dd>
-                        </div>
-                        <dd x-show="open" x-collapse id="faq-3" class="mt-2 pr-12">
-                            <p class="text-base text-gray-400">
-                                When you share a file with collaborators, Tea Chest uses end-to-end encrypted peer-to-peer connections (WebRTC) to sync changes in real-time. All changes are encrypted with the file's key before being transmitted. The actual content never touches our servers. We use Conflict-Free Replicated Data Types (CRDTs) to ensure all collaborators see the same state of the document, even if they're offline temporarily.
-                            </p>
-                        </dd>
-                    </div>
-                    
-                    <!-- Question 4 -->
-                    <div x-data="{ open: false }" class="pt-6">
-                        <div class="flex items-start justify-between">
-                            <dt class="text-lg font-medium text-white">
-                                <button @click="open = !open" class="text-left w-full flex items-start justify-between" aria-controls="faq-4" aria-expanded="false">
-                                    <span>How is file availability ensured on IPFS?</span>
-                                </button>
-                            </dt>
-                            <dd class="ml-6 flex-shrink-0">
-                                <button @click="open = !open" class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                            </dd>
-                        </div>
-                        <dd x-show="open" x-collapse id="faq-4" class="mt-2 pr-12">
-                            <p class="text-base text-gray-400">
-                                Tea Chest uses the Tea Protocol to incentivize nodes to pin your files for long-term availability. When you upload a file, you pay a small amount in TEA tokens that gets distributed to nodes that store your data. The more important a file is (based on access patterns and your preferences), the more nodes will be incentivized to keep it available. You can also choose to pay for additional redundancy.
-                            </p>
-                        </dd>
-                    </div>
-                    
-                    <!-- Question 5 -->
-                    <div x-data="{ open: false }" class="pt-6">
-                        <div class="flex items-start justify-between">
-                            <dt class="text-lg font-medium text-white">
-                                <button @click="open = !open" class="text-left w-full flex items-start justify-between" aria-controls="faq-5" aria-expanded="false">
-                                    <span>Can I use Tea Chest for my business?</span>
-                                </button>
-                            </dt>
-                            <dd class="ml-6 flex-shrink-0">
-                                <button @click="open = !open" class="p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-500">
-                                    <svg class="h-6 w-6" :class="{ 'hidden': open, 'block': !open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                    <svg class="h-6 w-6" :class="{ 'hidden': !open, 'block': open }" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                            </dd>
-                        </div>
-                        <dd x-show="open" x-collapse id="faq-5" class="mt-2 pr-12">
-                            <p class="text-base text-gray-400">
-                                Absolutely! Tea Chest offers enterprise plans with features tailored for businesses, including team management, advanced sharing controls, audit logs, and SAML SSO integration. Our decentralized architecture is particularly appealing for businesses concerned about data sovereignty and vendor lock-in. Contact our sales team to discuss your specific needs.
-                            </p>
-                        </dd>
-                    </div>
-                </div>
-                
-                <div class="mt-12 text-center">
-                    <p class="text-base text-gray-400">
-                        Have more questions? <a href="#" class="font-medium text-primary-500 hover:text-primary-400">Contact our support team</a>
+            <div class="mt-12 space-y-6">
+                <div class="border-b border-base-gray80 pb-6">
+                    <h3 class="text-lg font-medium text-white">How is Base Drive different from Google Drive or Dropbox?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        Base Drive is decentralized. Files are encrypted client-side and stored on IPFS. Access control and payments settle on Base. No single company holds your data or keys.
                     </p>
                 </div>
+                <div class="border-b border-base-gray80 pb-6">
+                    <h3 class="text-lg font-medium text-white">What is the BDRIVE token?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        BDRIVE is an ERC-20 utility token deployed on Base. It is used to pay for storage and pinning, incentivize nodes, and participate in protocol decisions. Paying with BDRIVE unlocks a discount.
+                    </p>
+                </div>
+                <div class="border-b border-base-gray80 pb-6">
+                    <h3 class="text-lg font-medium text-white">What happens if I lose my encryption key?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        Your key is generated and stored only on your devices. If you lose all copies there is no recovery path — by design. Base Drive provides tools to safely export and back up your key.
+                    </p>
+                </div>
+                <div class="border-b border-base-gray80 pb-6">
+                    <h3 class="text-lg font-medium text-white">How does real-time collaboration work with encryption?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        Collaborators sync over end-to-end encrypted WebRTC connections. Changes are encrypted with the file key. CRDTs keep state consistent even when peers are temporarily offline.
+                    </p>
+                </div>
+                <div class="border-b border-base-gray80 pb-6">
+                    <h3 class="text-lg font-medium text-white">How is file availability ensured on IPFS?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        Storage payments in BDRIVE (or ETH/USDC) incentivize nodes to pin your content. Higher demand and longer retention increase the incentive for redundancy across the network.
+                    </p>
+                </div>
+                <div class="pb-2">
+                    <h3 class="text-lg font-medium text-white">Can I use Base Drive for my business?</h3>
+                    <p class="mt-2 text-base-gray30">
+                        Yes. Enterprise plans include team management, advanced sharing controls, audit logs, and SAML SSO. Contact sales for custom requirements.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-base text-base-gray50">
+                    Have more questions? <a href="#" class="font-medium text-base-blue hover:underline">Contact support</a>
+                </p>
             </div>
         </div>
     </div>
 
-    <!-- CTA Section -->
-    <div class="bg-gradient-to-r from-dark-800/70 to-dark-900/70 backdrop-blur-lg border-t border-b border-white/5">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+    <!-- CTA -->
+    <div class="bg-base-black border-t border-b border-base-gray80">
+        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
             <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                 <span class="block">Ready to take control of your data?</span>
-                <span class="block gradient-text">Start using Tea Chest today.</span>
+                <span class="block text-base-blue">Start using Base Drive today.</span>
             </h2>
-            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-                <div class="inline-flex rounded-md shadow">
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition duration-150">
-                        Get started
-                    </a>
-                </div>
-                <div class="ml-3 inline-flex rounded-md shadow">
-                    <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-500 bg-dark-700 hover:bg-dark-600 transition duration-150">
-                        Learn more
-                    </a>
-                </div>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0 gap-3">
+                <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-base-blue hover:bg-blue-700 transition">
+                    Get started
+                </a>
+                <a href="#how-it-works" class="inline-flex items-center justify-center px-6 py-3 border border-base-gray80 text-base font-medium rounded-md text-white hover:border-base-gray30 transition">
+                    Learn more
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark-900">
+    <footer class="bg-base-black">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
             <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div class="space-y-8 xl:col-span-1">
-                    <div class="flex items-center">
-                        <i class="fas fa-leaf text-primary-500 text-2xl mr-2"></i>
-                        <span class="text-xl font-bold text-white">Tea Chest</span>
+                <div class="space-y-6 xl:col-span-1">
+                    <div class="flex items-center gap-2">
+                        <div class="base-square"></div>
+                        <span class="text-xl font-bold text-white">Base Drive</span>
                     </div>
-                    <p class="text-gray-400 text-base">
-                        Decentralized, encrypted file storage built on the Tea Protocol.
+                    <p class="text-base-gray50 text-base">
+                        Decentralized, encrypted file storage on Base. Powered by the BDRIVE ERC-20 token.
                     </p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Twitter</span>
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">GitHub</span>
-                            <i class="fab fa-github text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Discord</span>
-                            <i class="fab fa-discord text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <span class="sr-only">Telegram</span>
-                            <i class="fab fa-telegram text-xl"></i>
-                        </a>
+                    <div class="flex space-x-5">
+                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-github text-lg"></i></a>
+                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-telegram text-lg"></i></a>
                     </div>
                 </div>
                 <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
                     <div class="md:grid md:grid-cols-2 md:gap-8">
                         <div>
-                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                                Solutions
-                            </h3>
-                            <ul class="mt-4 space-y-4">
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Personal Storage
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Business Storage
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Developer API
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        White-label Solutions
-                                    </a>
-                                </li>
+                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Product</h3>
+                            <ul class="mt-4 space-y-3">
+                                <li><a href="#features" class="text-base text-base-gray50 hover:text-white">Features</a></li>
+                                <li><a href="#pricing" class="text-base text-base-gray50 hover:text-white">Pricing</a></li>
+                                <li><a href="#token" class="text-base text-base-gray50 hover:text-white">BDRIVE Token</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Developer API</a></li>
                             </ul>
                         </div>
                         <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                                Support
-                            </h3>
-                            <ul class="mt-4 space-y-4">
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Documentation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Guides
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        API Status
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Contact
-                                    </a>
-                                </li>
+                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Support</h3>
+                            <ul class="mt-4 space-y-3">
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Documentation</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Guides</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Status</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Contact</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="md:grid md:grid-cols-2 md:gap-8">
                         <div>
-                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                                Company
-                            </h3>
-                            <ul class="mt-4 space-y-4">
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        About
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Blog
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Careers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Press
-                                    </a>
-                                </li>
+                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Company</h3>
+                            <ul class="mt-4 space-y-3">
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">About</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Blog</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Careers</a></li>
                             </ul>
                         </div>
                         <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">
-                                Legal
-                            </h3>
-                            <ul class="mt-4 space-y-4">
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Privacy
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Terms
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        Cookie Policy
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="text-base text-gray-400 hover:text-white">
-                                        GDPR
-                                    </a>
-                                </li>
+                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Legal</h3>
+                            <ul class="mt-4 space-y-3">
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Privacy</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Terms</a></li>
+                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Cookie Policy</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-12 border-t border-dark-700 pt-8">
-                <p class="text-base text-gray-400 text-center">
-                    &copy; 2023 Tea Chest. All rights reserved.
+            <div class="mt-12 border-t border-base-gray80 pt-8">
+                <p class="text-base text-base-gray50 text-center">
+                    &copy; 2026 Base Drive. Built on Base. All rights reserved.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Alpine JS for interactivity -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script>
-        // Mobile menu toggle
         document.querySelector('.mobile-menu-button').addEventListener('click', function() {
             document.querySelector('.mobile-menu').classList.toggle('hidden');
         });
         
-        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (!document.querySelector('.mobile-menu').classList.contains('hidden')) {
-                    document.querySelector('.mobile-menu').classList.add('hidden');
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                const mobileMenu = document.querySelector('.mobile-menu');
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
                 }
             });
-        });
-        
-        // Animate elements when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fadeIn');
-                }
-            });
-        }, {threshold: 0.1});
-        
-        document.querySelectorAll('.feature-card, .floating').forEach(el => {
-            observer.observe(el);
         });
     </script>
 </body>
