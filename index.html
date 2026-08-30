@@ -29,6 +29,11 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+                        'glass-sm': '0 4px 16px 0 rgba(0, 0, 0, 0.25)',
+                        'blue-glow': '0 0 40px -10px rgba(0, 0, 255, 0.4)',
                     }
                 }
             }
@@ -37,90 +42,132 @@
     <style>
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0A0B0D;
         }
-        
-        .base-blue-text {
-            color: #0000FF;
+
+        /* Glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-nav {
+            background: rgba(10, 11, 13, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
         .base-square {
             width: 28px;
             height: 28px;
             background: #0000FF;
-            border-radius: 5%;
+            border-radius: 6px;
             flex-shrink: 0;
         }
-        
+
         .base-square-sm {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background: #0000FF;
-            border-radius: 5%;
+            border-radius: 4px;
             flex-shrink: 0;
         }
-        
-        .file-card:hover {
-            transform: translateY(-3px);
-            border-color: #0000FF;
+
+        .file-card {
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+        .file-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 0, 255, 0.5);
+            background: rgba(0, 0, 255, 0.06);
+        }
+
+        .feature-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .feature-card:hover {
+            border-color: rgba(0, 0, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px -12px rgba(0, 0, 255, 0.15);
+        }
+        .feature-card:hover .feature-icon-wrap {
+            background: #0000FF;
+        }
+
+        .nav-link {
+            transition: color 0.2s ease;
+        }
         .nav-link:hover {
             color: #FFFFFF;
         }
-        
-        .feature-card:hover {
-            border-color: rgba(0, 0, 255, 0.4);
-        }
-        
-        .feature-card:hover .feature-icon {
-            color: #0000FF;
-        }
-        
+
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
         .floating {
-            animation: float 6s ease-in-out infinite;
+            animation: float 7s ease-in-out infinite;
         }
-        
-        /* Clean borders matching Base restraint */
-        .base-border {
-            border: 1px solid #32353D;
+
+        /* Subtle ambient gradient */
+        .hero-glow {
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 255, 0.15), transparent);
+        }
+
+        /* Smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0B0D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #32353D;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5B616E;
         }
     </style>
 </head>
 <body class="bg-base-black text-gray-100 font-sans antialiased">
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-base-black/90 backdrop-blur-md border-b border-base-gray80">
+    <nav class="fixed w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center gap-2">
+                    <div class="flex-shrink-0 flex items-center gap-2.5">
                         <div class="base-square"></div>
                         <span class="text-xl font-bold text-white tracking-tight">Base Drive</span>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-1">
-                            <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Features</a>
-                            <a href="#how-it-works" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">How it works</a>
-                            <a href="#pricing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Pricing</a>
-                            <a href="#token" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">Token</a>
-                            <a href="#faq" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30 hover:text-white transition">FAQ</a>
+                            <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30">Features</a>
+                            <a href="#how-it-works" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30">How it works</a>
+                            <a href="#pricing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30">Pricing</a>
+                            <a href="#token" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30">Token</a>
+                            <a href="#faq" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-base-gray30">FAQ</a>
                         </div>
                     </div>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6 gap-3">
-                        <a href="#" class="px-4 py-2 rounded-md text-sm font-medium text-white bg-base-blue hover:bg-blue-700 transition duration-150">
-                            Get Early Access
-                        </a>
-                    </div>
+                    <a href="#" class="px-5 py-2.5 rounded-lg text-sm font-semibold text-white bg-base-blue hover:bg-blue-600 transition duration-200 shadow-blue-glow">
+                        Get Early Access
+                    </a>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-base-gray30 hover:text-white hover:bg-base-gray80 focus:outline-none">
+                    <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-lg text-base-gray30 hover:text-white hover:bg-white/5 focus:outline-none transition">
                         <span class="sr-only">Open main menu</span>
                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -129,705 +176,99 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Mobile menu -->
-        <div class="mobile-menu hidden md:hidden bg-base-black border-b border-base-gray80">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Features</a>
-                <a href="#how-it-works" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">How it works</a>
-                <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Pricing</a>
-                <a href="#token" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">Token</a>
-                <a href="#faq" class="block px-3 py-2 rounded-md text-base font-medium text-base-gray30 hover:text-white hover:bg-base-gray80">FAQ</a>
+        <div class="mobile-menu hidden md:hidden glass-strong border-t border-white/5">
+            <div class="px-3 pt-2 pb-3 space-y-1">
+                <a href="#features" class="block px-3 py-2.5 rounded-lg text-base font-medium text-base-gray30 hover:text-white hover:bg-white/5 transition">Features</a>
+                <a href="#how-it-works" class="block px-3 py-2.5 rounded-lg text-base font-medium text-base-gray30 hover:text-white hover:bg-white/5 transition">How it works</a>
+                <a href="#pricing" class="block px-3 py-2.5 rounded-lg text-base font-medium text-base-gray30 hover:text-white hover:bg-white/5 transition">Pricing</a>
+                <a href="#token" class="block px-3 py-2.5 rounded-lg text-base font-medium text-base-gray30 hover:text-white hover:bg-white/5 transition">Token</a>
+                <a href="#faq" class="block px-3 py-2.5 rounded-lg text-base font-medium text-base-gray30 hover:text-white hover:bg-white/5 transition">FAQ</a>
             </div>
-            <div class="pt-4 pb-3 border-t border-base-gray80">
-                <div class="px-5">
-                    <a href="#" class="block w-full px-4 py-2 rounded-md text-center text-sm font-medium text-white bg-base-blue hover:bg-blue-700 transition">
-                        Get Early Access
-                    </a>
-                </div>
+            <div class="pt-3 pb-4 border-t border-white/5 px-4">
+                <a href="#" class="block w-full px-4 py-2.5 rounded-lg text-center text-sm font-semibold text-white bg-base-blue hover:bg-blue-600 transition">
+                    Get Early Access
+                </a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="relative overflow-hidden pt-28 pb-20 bg-base-black">
+    <div class="relative overflow-hidden pt-28 pb-24 hero-glow">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-center">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
                 <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-base-gray80 text-xs font-medium text-base-gray30 mb-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-xs font-medium text-base-gray30 mb-8">
                         <div class="base-square-sm"></div>
                         Built on Base · ERC-20
                     </div>
-                    <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl leading-[1.1]">
                         <span class="block">Your files,</span>
                         <span class="block text-base-blue">onchain & private</span>
                     </h1>
-                    <p class="mt-5 text-base text-base-gray30 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                    <p class="mt-6 text-base text-base-gray30 sm:text-lg sm:max-w-xl sm:mx-auto md:text-xl lg:mx-0 leading-relaxed">
                         Base Drive is decentralized encrypted storage on Base. End-to-end encrypted, distributed on IPFS, powered by the BDRIVE ERC-20 token, with real-time collaboration.
                     </p>
-                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                    <div class="mt-10 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <a href="#" class="px-6 py-3 text-base font-medium rounded-md text-white bg-base-blue hover:bg-blue-700 md:py-4 md:text-lg md:px-8 transition">
+                            <a href="#" class="px-7 py-3.5 text-base font-semibold rounded-lg text-white bg-base-blue hover:bg-blue-600 transition shadow-blue-glow md:text-lg">
                                 Start free trial
                             </a>
-                            <a href="#how-it-works" class="px-6 py-3 text-base font-medium rounded-md text-white border border-base-gray80 hover:border-base-gray30 md:py-4 md:text-lg md:px-8 transition">
+                            <a href="#how-it-works" class="px-7 py-3.5 text-base font-medium rounded-lg text-white glass hover:bg-white/10 transition md:text-lg">
                                 Learn more
                             </a>
                         </div>
-                        <p class="mt-3 text-xs text-base-gray50">
+                        <p class="mt-4 text-xs text-base-gray50">
                             No credit card required. 14-day free trial. Pay with BDRIVE, ETH, or USDC on Base.
                         </p>
                     </div>
                 </div>
-                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-                    <div class="relative mx-auto w-full rounded-lg lg:max-w-md">
-                        <div class="relative block w-full bg-base-gray100 border border-base-gray80 rounded-lg overflow-hidden">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-base-blue"></div>
-                            <div class="p-4">
-                                <div class="flex items-center justify-between mb-4">
+
+                <!-- Mock UI -->
+                <div class="mt-16 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
+                    <div class="relative mx-auto w-full rounded-2xl lg:max-w-md">
+                        <div class="relative block w-full glass-strong rounded-2xl overflow-hidden shadow-glass">
+                            <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-base-blue to-transparent"></div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-5">
                                     <div class="flex items-center space-x-2">
-                                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
                                     </div>
-                                    <div class="text-xs text-base-gray50">Base Drive · v1.0</div>
+                                    <div class="text-xs text-base-gray50 font-medium">Base Drive · v1.0</div>
                                 </div>
-                                <div class="border border-base-gray80 rounded-lg overflow-hidden">
-                                    <div class="bg-base-black p-3 border-b border-base-gray80 flex items-center justify-between">
-                                        <div class="flex items-center space-x-2">
+                                <div class="glass rounded-xl overflow-hidden">
+                                    <div class="bg-black/40 p-3.5 border-b border-white/5 flex items-center justify-between">
+                                        <div class="flex items-center space-x-2.5">
                                             <i class="fas fa-folder text-base-blue"></i>
-                                            <span class="text-sm font-medium">My Documents</span>
+                                            <span class="text-sm font-medium text-white">My Documents</span>
                                         </div>
-                                        <div class="flex items-center space-x-2">
-                                            <i class="fas fa-search text-base-gray50 text-xs"></i>
-                                            <i class="fas fa-ellipsis-h text-base-gray50 text-xs"></i>
+                                        <div class="flex items-center space-x-3 text-base-gray50">
+                                            <i class="fas fa-search text-xs"></i>
+                                            <i class="fas fa-ellipsis-h text-xs"></i>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-3 p-3">
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                    <div class="grid grid-cols-3 gap-2.5 p-3.5">
+                                        <div class="file-card glass rounded-xl p-3 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-alt text-base-blue"></i>
-                                                <span class="text-xs truncate">Project Proposal</span>
+                                                <i class="fas fa-file-alt text-base-blue text-sm"></i>
+                                                <span class="text-xs truncate text-white">Project Proposal</span>
                                             </div>
-                                            <div class="text-xs text-base-gray50 flex items-center space-x-1">
-                                                <i class="fas fa-user-friends text-xs"></i>
+                                            <div class="text-[10px] text-base-gray50 flex items-center space-x-1">
+                                                <i class="fas fa-user-friends"></i>
                                                 <span>3 collaborators</span>
                                             </div>
                                         </div>
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card glass rounded-xl p-3 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-image text-base-blue"></i>
-                                                <span class="text-xs truncate">Team Photo</span>
+                                                <i class="fas fa-file-image text-base-blue text-sm"></i>
+                                                <span class="text-xs truncate text-white">Team Photo</span>
                                             </div>
-                                            <div class="text-xs text-base-gray50">Encrypted</div>
+                                            <div class="text-[10px] text-base-gray50">Encrypted</div>
                                         </div>
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
+                                        <div class="file-card glass rounded-xl p-3 cursor-pointer">
                                             <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-pdf text-base-blue"></i>
-                                                <span class="text-xs truncate">Financial Report</span>
-                                            </div>
-                                            <div class="text-xs text-base-gray50">Encrypted</div>
-                                        </div>
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
-                                            <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-code text-base-blue"></i>
-                                                <span class="text-xs truncate">Website Code</span>
-                                            </div>
-                                            <div class="text-xs text-base-gray50 flex items-center space-x-1">
-                                                <i class="fas fa-user-friends text-xs"></i>
-                                                <span>5 collaborators</span>
-                                            </div>
-                                        </div>
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
-                                            <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-audio text-base-blue"></i>
-                                                <span class="text-xs truncate">Podcast Episode</span>
-                                            </div>
-                                            <div class="text-xs text-base-gray50">Encrypted</div>
-                                        </div>
-                                        <div class="file-card bg-base-gray100 border border-base-gray80 rounded-lg p-3 transition duration-150 cursor-pointer">
-                                            <div class="flex items-center space-x-2 mb-2">
-                                                <i class="fas fa-file-video text-base-blue"></i>
-                                                <span class="text-xs truncate">Product Demo</span>
-                                            </div>
-                                            <div class="text-xs text-base-gray50">Encrypted</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-28 h-28 rounded-md bg-base-blue/10 -z-10 floating"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Features Section -->
-    <div id="features" class="py-20 bg-base-gray100 border-t border-base-gray80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Features</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    Storage built for Base
-                </p>
-                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
-                    Secure, decentralized, and collaborative file storage powered by Base and IPFS.
-                </p>
-            </div>
-
-            <div class="mt-16">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-lock text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">End-to-End Encryption</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            All files are encrypted before leaving your device. Only you and those you share with can access the contents.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-network-wired text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">Decentralized Storage</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            Files are distributed across the IPFS network, ensuring redundancy and eliminating single points of failure.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-users text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">Real-time Collaboration</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            Multiple people can edit documents simultaneously with end-to-end encrypted collaboration.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-history text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">Version History</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            Every change is tracked and stored. Revert to any previous version of your files at any time.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-shield-alt text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">Zero-Knowledge</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            We never have access to your files or encryption keys. Your privacy is mathematically guaranteed.
-                        </p>
-                    </div>
-                    
-                    <div class="feature-card relative bg-base-black p-6 rounded-lg border border-base-gray80 transition duration-150">
-                        <div class="w-11 h-11 rounded-md bg-base-blue flex items-center justify-center mb-5">
-                            <i class="feature-icon fas fa-cube text-white text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-white">Native to Base</h3>
-                        <p class="mt-2 text-base text-base-gray30">
-                            Built on Base for low-cost transactions, fast finality, and seamless ERC-20 payments with BDRIVE.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- How it works -->
-    <div id="how-it-works" class="py-20 bg-base-black border-t border-base-gray80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Technology</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    How Base Drive works
-                </p>
-                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
-                    A technical breakdown of our decentralized storage solution on Base
-                </p>
-            </div>
-            
-            <div class="mt-16">
-                <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
-                    <div class="relative lg:row-start-1 lg:col-start-2">
-                        <div class="bg-base-gray100 border border-base-gray80 rounded-lg p-8">
-                            <div class="flex flex-col space-y-6">
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
-                                        <i class="fas fa-lock text-white"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-white font-medium">Client-Side Encryption</h4>
-                                        <p class="mt-1 text-base-gray30 text-sm">
-                                            Files are encrypted on your device before upload using AES-256.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
-                                        <i class="fas fa-project-diagram text-white"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-white font-medium">IPFS Storage</h4>
-                                        <p class="mt-1 text-base-gray30 text-sm">
-                                            Encrypted chunks are distributed across the InterPlanetary File System.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
-                                        <i class="fas fa-link text-white"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-white font-medium">Base Settlement</h4>
-                                        <p class="mt-1 text-base-gray30 text-sm">
-                                            Content addresses, access control, and payments settle on Base via ERC-20.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start space-x-4">
-                                    <div class="flex-shrink-0 h-10 w-10 rounded-md bg-base-blue flex items-center justify-center">
-                                        <i class="fas fa-sync-alt text-white"></i>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-white font-medium">Collaboration</h4>
-                                        <p class="mt-1 text-base-gray30 text-sm">
-                                            End-to-end encrypted real-time collaboration using WebRTC and CRDTs.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-10 lg:mt-0 lg:row-start-1 lg:col-start-1">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Decentralized by design</h3>
-                            <p class="mt-4 text-base-gray30">
-                                Base Drive combines IPFS for content addressing with Base for low-cost settlement, access control, and the BDRIVE ERC-20 utility token.
-                            </p>
-                            <ul class="mt-8 space-y-4 text-base-gray30">
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p class="ml-3">
-                                        <strong class="text-white">No single point of failure</strong> — files distributed across IPFS nodes
-                                    </p>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p class="ml-3">
-                                        <strong class="text-white">Mathematically private</strong> — zero-knowledge architecture
-                                    </p>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p class="ml-3">
-                                        <strong class="text-white">Pay on Base</strong> — BDRIVE ERC-20, ETH, or USDC
-                                    </p>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0">
-                                        <div class="flex items-center justify-center h-6 w-6 rounded-md bg-base-blue text-white">
-                                            <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p class="ml-3">
-                                        <strong class="text-white">Open source</strong> — client code is auditable
-                                    </p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Token Section -->
-    <div id="token" class="py-20 bg-base-gray100 border-t border-base-gray80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">BDRIVE Token</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    The Base Drive ERC-20
-                </p>
-                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
-                    BDRIVE is the native utility token on Base used for storage payments, pinning incentives, and protocol governance.
-                </p>
-            </div>
-            
-            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
-                    <h3 class="text-white font-semibold">Utility</h3>
-                    <p class="mt-2 text-sm text-base-gray30">Pay for storage, bandwidth, and long-term pinning with BDRIVE. Holders receive preferential rates.</p>
-                </div>
-                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
-                    <h3 class="text-white font-semibold">Incentives</h3>
-                    <p class="mt-2 text-sm text-base-gray30">Nodes that pin content earn BDRIVE. Storage demand directly drives token utility on Base.</p>
-                </div>
-                <div class="bg-base-black border border-base-gray80 rounded-lg p-6">
-                    <h3 class="text-white font-semibold">Network</h3>
-                    <p class="mt-2 text-sm text-base-gray30">Deployed as a standard ERC-20 on Base. Low fees, fast confirmation, fully onchain.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pricing Section -->
-    <div id="pricing" class="py-20 bg-base-black border-t border-base-gray80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:text-center">
-                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">Pricing</h2>
-                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
-                    Simple, transparent pricing
-                </p>
-                <p class="mt-4 max-w-2xl text-lg text-base-gray30 lg:mx-auto">
-                    Pay only for what you use. Discount when paying with BDRIVE.
-                </p>
-            </div>
-            
-            <div class="mt-16">
-                <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                    <!-- Free -->
-                    <div class="bg-base-gray100 border border-base-gray80 rounded-lg divide-y divide-base-gray80">
-                        <div class="p-6">
-                            <h2 class="text-lg font-medium text-white">Free</h2>
-                            <p class="mt-4">
-                                <span class="text-4xl font-extrabold text-white">$0</span>
-                                <span class="text-base font-medium text-base-gray50">/month</span>
-                            </p>
-                            <p class="mt-4 text-sm text-base-gray30">Perfect for trying Base Drive</p>
-                            <a href="#" class="mt-8 block w-full border border-base-gray80 rounded-md py-2.5 text-sm font-semibold text-white text-center hover:border-base-blue transition">
-                                Get started
-                            </a>
-                        </div>
-                        <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
-                            <ul class="mt-6 space-y-4">
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">5GB encrypted storage</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Basic collaboration</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">30-day version history</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Community support</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Pro -->
-                    <div class="bg-base-gray100 border-2 border-base-blue rounded-lg divide-y divide-base-gray80 relative transform lg:scale-105 z-10">
-                        <div class="p-6">
-                            <div class="flex justify-between items-start">
-                                <h2 class="text-lg font-medium text-white">Pro</h2>
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-base-blue text-white">
-                                    Most popular
-                                </span>
-                            </div>
-                            <p class="mt-4">
-                                <span class="text-4xl font-extrabold text-white">$9</span>
-                                <span class="text-base font-medium text-base-gray50">/month</span>
-                            </p>
-                            <p class="mt-4 text-sm text-base-gray30">For professionals and teams</p>
-                            <a href="#" class="mt-8 block w-full bg-base-blue rounded-md py-2.5 text-sm font-semibold text-white text-center hover:bg-blue-700 transition">
-                                Get started
-                            </a>
-                        </div>
-                        <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
-                            <ul class="mt-6 space-y-4">
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">100GB encrypted storage</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Advanced collaboration</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">1-year version history</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Priority support</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Team management</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">BDRIVE discount</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Enterprise -->
-                    <div class="bg-base-gray100 border border-base-gray80 rounded-lg divide-y divide-base-gray80">
-                        <div class="p-6">
-                            <h2 class="text-lg font-medium text-white">Enterprise</h2>
-                            <p class="mt-4">
-                                <span class="text-4xl font-extrabold text-white">Custom</span>
-                            </p>
-                            <p class="mt-4 text-sm text-base-gray30">Advanced security & compliance</p>
-                            <a href="#" class="mt-8 block w-full border border-base-gray80 rounded-md py-2.5 text-sm font-semibold text-white text-center hover:border-base-blue transition">
-                                Contact sales
-                            </a>
-                        </div>
-                        <div class="pt-6 pb-8 px-6">
-                            <h3 class="text-xs font-medium text-base-gray50 tracking-wide uppercase">What's included</h3>
-                            <ul class="mt-6 space-y-4">
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Unlimited storage</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Advanced security controls</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Unlimited version history</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">24/7 dedicated support</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">SAML SSO</span>
-                                </li>
-                                <li class="flex space-x-3">
-                                    <svg class="flex-shrink-0 h-5 w-5 text-base-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                                    <span class="text-sm text-base-gray30">Custom contracts</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-12 p-6 bg-base-gray100 border border-base-gray80 rounded-lg">
-                <h3 class="text-lg font-medium text-white text-center">Pay on Base</h3>
-                <p class="mt-2 text-base-gray30 text-center text-sm">
-                    All plans can be paid with BDRIVE (10% discount), ETH, or USDC on Base
-                </p>
-                <div class="mt-6 flex flex-wrap justify-center gap-3">
-                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
-                        <div class="base-square-sm mr-2"></div>
-                        <span class="text-sm font-medium text-white">BDRIVE</span>
-                    </div>
-                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
-                        <span class="text-sm font-medium text-white">ETH</span>
-                    </div>
-                    <div class="flex items-center bg-base-black px-4 py-2 rounded-md border border-base-gray80">
-                        <span class="text-sm font-medium text-white">USDC</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FAQ -->
-    <div id="faq" class="py-20 bg-base-gray100 border-t border-base-gray80">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-sm font-semibold tracking-wide uppercase text-base-blue">FAQ</h2>
-                <p class="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
-                    Frequently asked questions
-                </p>
-            </div>
-            
-            <div class="mt-12 space-y-6">
-                <div class="border-b border-base-gray80 pb-6">
-                    <h3 class="text-lg font-medium text-white">How is Base Drive different from Google Drive or Dropbox?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        Base Drive is decentralized. Files are encrypted client-side and stored on IPFS. Access control and payments settle on Base. No single company holds your data or keys.
-                    </p>
-                </div>
-                <div class="border-b border-base-gray80 pb-6">
-                    <h3 class="text-lg font-medium text-white">What is the BDRIVE token?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        BDRIVE is an ERC-20 utility token deployed on Base. It is used to pay for storage and pinning, incentivize nodes, and participate in protocol decisions. Paying with BDRIVE unlocks a discount.
-                    </p>
-                </div>
-                <div class="border-b border-base-gray80 pb-6">
-                    <h3 class="text-lg font-medium text-white">What happens if I lose my encryption key?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        Your key is generated and stored only on your devices. If you lose all copies there is no recovery path — by design. Base Drive provides tools to safely export and back up your key.
-                    </p>
-                </div>
-                <div class="border-b border-base-gray80 pb-6">
-                    <h3 class="text-lg font-medium text-white">How does real-time collaboration work with encryption?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        Collaborators sync over end-to-end encrypted WebRTC connections. Changes are encrypted with the file key. CRDTs keep state consistent even when peers are temporarily offline.
-                    </p>
-                </div>
-                <div class="border-b border-base-gray80 pb-6">
-                    <h3 class="text-lg font-medium text-white">How is file availability ensured on IPFS?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        Storage payments in BDRIVE (or ETH/USDC) incentivize nodes to pin your content. Higher demand and longer retention increase the incentive for redundancy across the network.
-                    </p>
-                </div>
-                <div class="pb-2">
-                    <h3 class="text-lg font-medium text-white">Can I use Base Drive for my business?</h3>
-                    <p class="mt-2 text-base-gray30">
-                        Yes. Enterprise plans include team management, advanced sharing controls, audit logs, and SAML SSO. Contact sales for custom requirements.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="mt-12 text-center">
-                <p class="text-base text-base-gray50">
-                    Have more questions? <a href="#" class="font-medium text-base-blue hover:underline">Contact support</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- CTA -->
-    <div class="bg-base-black border-t border-b border-base-gray80">
-        <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between">
-            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                <span class="block">Ready to take control of your data?</span>
-                <span class="block text-base-blue">Start using Base Drive today.</span>
-            </h2>
-            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0 gap-3">
-                <a href="#" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-base-blue hover:bg-blue-700 transition">
-                    Get started
-                </a>
-                <a href="#how-it-works" class="inline-flex items-center justify-center px-6 py-3 border border-base-gray80 text-base font-medium rounded-md text-white hover:border-base-gray30 transition">
-                    Learn more
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-base-black">
-        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-                <div class="space-y-6 xl:col-span-1">
-                    <div class="flex items-center gap-2">
-                        <div class="base-square"></div>
-                        <span class="text-xl font-bold text-white">Base Drive</span>
-                    </div>
-                    <p class="text-base-gray50 text-base">
-                        Decentralized, encrypted file storage on Base. Powered by the BDRIVE ERC-20 token.
-                    </p>
-                    <div class="flex space-x-5">
-                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-twitter text-lg"></i></a>
-                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-github text-lg"></i></a>
-                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-discord text-lg"></i></a>
-                        <a href="#" class="text-base-gray50 hover:text-white transition"><i class="fab fa-telegram text-lg"></i></a>
-                    </div>
-                </div>
-                <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Product</h3>
-                            <ul class="mt-4 space-y-3">
-                                <li><a href="#features" class="text-base text-base-gray50 hover:text-white">Features</a></li>
-                                <li><a href="#pricing" class="text-base text-base-gray50 hover:text-white">Pricing</a></li>
-                                <li><a href="#token" class="text-base text-base-gray50 hover:text-white">BDRIVE Token</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Developer API</a></li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Support</h3>
-                            <ul class="mt-4 space-y-3">
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Documentation</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Guides</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Status</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8">
-                        <div>
-                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Company</h3>
-                            <ul class="mt-4 space-y-3">
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">About</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Blog</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Careers</a></li>
-                            </ul>
-                        </div>
-                        <div class="mt-12 md:mt-0">
-                            <h3 class="text-sm font-semibold text-base-gray30 tracking-wider uppercase">Legal</h3>
-                            <ul class="mt-4 space-y-3">
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Privacy</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Terms</a></li>
-                                <li><a href="#" class="text-base text-base-gray50 hover:text-white">Cookie Policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-12 border-t border-base-gray80 pt-8">
-                <p class="text-base text-base-gray50 text-center">
-                    &copy; 2026 Base Drive. Built on Base. All rights reserved.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script>
-        document.querySelector('.mobile-menu-button').addEventListener('click', function() {
-            document.querySelector('.mobile-menu').classList.toggle('hidden');
-        });
-        
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-                const mobileMenu = document.querySelector('.mobile-menu');
-                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                                                <i class="fas fa-file-pdf text-base-blue text-sm"></i>
+                                               
